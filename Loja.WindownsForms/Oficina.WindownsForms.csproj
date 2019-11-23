@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C5BA667-4D96-4B3C-8C7A-869D53569EBC}</ProjectGuid>
+    <ProjectGuid>{E3062F3F-BA39-4C5C-92FA-5DBB6BD976E7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpFundamentos.Capitulo03.Variaveis</RootNamespace>
-    <AssemblyName>CSharpFundamentos.Capitulo03.Variaveis</AssemblyName>
+    <RootNamespace>Loja.WindownsForms</RootNamespace>
+    <AssemblyName>Loja.WindownsForms</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,14 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VariaveisForm.cs">
+    <Compile Include="Formulario.cs" />
+    <Compile Include="VeiculoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VariaveisForm.Designer.cs">
-      <DependentUpon>VariaveisForm.cs</DependentUpon>
+    <Compile Include="VeiculoForm.Designer.cs">
+      <DependentUpon>VeiculoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="VeiculoForm.resx">
+      <DependentUpon>VeiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,9 +67,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="VariaveisForm.resx">
-      <DependentUpon>VariaveisForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,6 +79,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Oficina.Dominio\Oficina.Dominio.csproj">
+      <Project>{31ab79ed-2456-442c-ba3a-09d314ffd2dd}</Project>
+      <Name>Oficina.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oficina.Repositorios.SistemasArquivos\Oficina.Repositorios.SistemasArquivos.csproj">
+      <Project>{7f90f20e-acfb-4e8c-a00b-e2b0337f3a79}</Project>
+      <Name>Oficina.Repositorios.SistemasArquivos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Dados\Cor.txt" />
+    <Content Include="bin\Debug\Dados\Marca.txt" />
+    <Content Include="bin\Debug\Dados\Modelo.xml" />
+    <Content Include="bin\Debug\Dados\Veiculo.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
