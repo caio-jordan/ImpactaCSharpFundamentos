@@ -122,7 +122,7 @@
             this.anoMaskedTextBox.Name = "anoMaskedTextBox";
             this.anoMaskedTextBox.Size = new System.Drawing.Size(121, 20);
             this.anoMaskedTextBox.TabIndex = 3;
-            this.anoMaskedTextBox.Tag = "*";
+            this.anoMaskedTextBox.Tag = "*ANO";
             // 
             // combustivelComboBox
             // 
@@ -141,6 +141,7 @@
             this.cambioComboBox.Size = new System.Drawing.Size(121, 21);
             this.cambioComboBox.TabIndex = 7;
             this.cambioComboBox.Tag = "*";
+            this.cambioComboBox.SelectedIndexChanged += new System.EventHandler(this.cambioComboBox_SelectedIndexChanged);
             // 
             // placaMaskedTextBox
             // 
@@ -149,7 +150,8 @@
             this.placaMaskedTextBox.Name = "placaMaskedTextBox";
             this.placaMaskedTextBox.Size = new System.Drawing.Size(121, 20);
             this.placaMaskedTextBox.TabIndex = 0;
-            this.placaMaskedTextBox.Tag = "*";
+            this.placaMaskedTextBox.Tag = "*PLACA";
+            this.placaMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // marcaComboBox
             // 
@@ -176,7 +178,7 @@
             this.gravarButton.Name = "gravarButton";
             this.gravarButton.Size = new System.Drawing.Size(85, 50);
             this.gravarButton.TabIndex = 8;
-            this.gravarButton.Text = "Gravar";
+            this.gravarButton.Text = "&Gravar";
             this.gravarButton.UseVisualStyleBackColor = true;
             this.gravarButton.Click += new System.EventHandler(this.gravarButton_Click);
             // 
@@ -188,6 +190,7 @@
             this.limparButton.TabIndex = 9;
             this.limparButton.Text = "Limpar";
             this.limparButton.UseVisualStyleBackColor = true;
+            this.limparButton.Click += new System.EventHandler(this.limparButton_Click);
             // 
             // observacaoGroupBox
             // 
@@ -218,6 +221,7 @@
             // 
             // veiculoErrorProvider
             // 
+            this.veiculoErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.veiculoErrorProvider.ContainerControl = this;
             // 
             // VeiculoForm

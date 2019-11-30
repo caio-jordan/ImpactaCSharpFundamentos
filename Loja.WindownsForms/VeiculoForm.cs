@@ -69,12 +69,36 @@ namespace Loja.WindownsForms
             if (Formulario.Validar(this,veiculoErrorProvider))
             {
                 GravarVeiculo();
+                MessageBox.Show("Veículo gravado com sucesso!");
+                Formulario.Limpar(this);
+                placaMaskedTextBox.Focus();
             }
         }
 
         private void GravarVeiculo()
         {
+            var veiculo = new VeiculoPasseio();
 
+            veiculo.Ano = Convert.ToInt32(anoMaskedTextBox.Text);
+            veiculo.Cambio = (Cambio) cambioComboBox.SelectedItem;
+            veiculo.Carroceria = Carroceria.Hatch;
+            veiculo.Combustivel = (Combustivel)combustivelComboBox.SelectedItem;
+            veiculo.Cor = (Cor)corComboBox.SelectedItem;
+            veiculo.Observacao = observacaoTextBox.Text;
+            veiculo.Placa = placaMaskedTextBox.Text;
+
+            new VeiculoRepositorio().Inserir(veiculo);
+
+        }
+
+        private void cambioComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void limparButton_Click(object sender, EventArgs e)
+        {
+            Formulario.Limpar(this);
         }
     }
 }

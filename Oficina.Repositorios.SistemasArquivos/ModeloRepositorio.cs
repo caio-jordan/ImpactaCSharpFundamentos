@@ -9,10 +9,18 @@ using System.Xml.Linq;
 
 namespace Oficina.Repositorios.SistemasArquivos
 {
-    public class ModeloRepositorio
+    public class ModeloRepositorio : RepositorioBase
     {
-        private XDocument arquivoXml = XDocument.Load( ConfigurationManager.AppSettings["caminhoArquivoModelo"]); //O comando 'XDocument'' serve para manipular arquivos xml 
+        private XDocument arquivoXml; //= XDocument.Load( ConfigurationManager.AppSettings["caminhoArquivoModelo"]); //O comando 'XDocument'' serve para manipular arquivos xml 
+
+        public ModeloRepositorio() : base("caminhoArquivoModelo")
+        {
+            arquivoXml = XDocument.Load(CaminhoArquivo);
+        }
+
         //XDocument esta aguardando um arquivo xml para trabalhar. (Load)serve para carregar um arquivo xml
+
+
 
         public List<Modelo> ObterPorMarca(int marcaId) // a primeira linha do metodo é assinatura do metódo, se esquer de colocar o 'public' ele é private.
         {
@@ -45,7 +53,7 @@ namespace Oficina.Repositorios.SistemasArquivos
             {
                 if (id.ToString() == elemento.Element("id").Value)
                 {
-                    modelo = new Modelo(); //Instacia da classe
+                    modelo = new Modelo(); //Instância da classe
                     modelo.Id = id;
                     modelo.Nome = elemento.Element("nome").Value;
                     
