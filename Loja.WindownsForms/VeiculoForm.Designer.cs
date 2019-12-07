@@ -141,7 +141,6 @@
             this.cambioComboBox.Size = new System.Drawing.Size(121, 21);
             this.cambioComboBox.TabIndex = 7;
             this.cambioComboBox.Tag = "*";
-            this.cambioComboBox.SelectedIndexChanged += new System.EventHandler(this.cambioComboBox_SelectedIndexChanged);
             // 
             // placaMaskedTextBox
             // 
@@ -248,7 +247,6 @@
             this.Controls.Add(this.Placa);
             this.Name = "VeiculoForm";
             this.Text = "Cadrastro de Veículos";
-            this.Load += new System.EventHandler(this.VeiculoForm_Load);
             this.observacaoGroupBox.ResumeLayout(false);
             this.observacaoGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.veiculoErrorProvider)).EndInit();

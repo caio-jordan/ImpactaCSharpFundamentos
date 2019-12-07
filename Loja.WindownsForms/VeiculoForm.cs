@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,10 +44,6 @@ namespace Loja.WindownsForms
 
         }
 
-        private void VeiculoForm_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void marcaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -66,36 +63,54 @@ namespace Loja.WindownsForms
 
         private void gravarButton_Click(object sender, EventArgs e)
         {
-            if (Formulario.Validar(this,veiculoErrorProvider))
+            try
             {
-                GravarVeiculo();
-                MessageBox.Show("Veículo gravado com sucesso!");
-                Formulario.Limpar(this);
-                placaMaskedTextBox.Focus();
+                if (Formulario.Validar(this, veiculoErrorProvider))
+                {
+                    GravarVeiculo();
+                    MessageBox.Show("Veículo gravado com sucesso!");
+                    Formulario.Limpar(this);
+                    placaMaskedTextBox.Focus();
+                }
+            }
+            catch (FileNotFoundException excecao)
+            {
+                MessageBox.Show($"O arquivo {excecao.FileName} não foi encontrado.");
+            }
+
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("O arquivo Veiculo.xml está com o atributo Somente Leitura.");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Eita! Algo deu errado e em breve teremos uma solução. ");
+                //Logar(ex) - LOG4NET para implementar  ; um metodo para registrar o erro
+
+                throw;
+            }
+            finally
+            {
+                // É executado sempre! Mesmo qeu haja algum return no código. Independente de erro
+
             }
         }
 
         private void GravarVeiculo()
         {
-            var veiculo = new VeiculoPasseio();
+                var veiculo = new VeiculoPasseio();
 
-            veiculo.Ano = Convert.ToInt32(anoMaskedTextBox.Text);
-            veiculo.Cambio = (Cambio) cambioComboBox.SelectedItem;
-            veiculo.Carroceria = Carroceria.Hatch;
-            veiculo.Combustivel = (Combustivel)combustivelComboBox.SelectedItem;
-            veiculo.Cor = (Cor)corComboBox.SelectedItem;
-            veiculo.Observacao = observacaoTextBox.Text;
-            veiculo.Placa = placaMaskedTextBox.Text;
+                veiculo.Ano = Convert.ToInt32(anoMaskedTextBox.Text);
+                veiculo.Cambio = (Cambio)cambioComboBox.SelectedItem;
+                veiculo.Carroceria = Carroceria.Hatch;
+                veiculo.Combustivel = (Combustivel)combustivelComboBox.SelectedItem;
+                veiculo.Cor = (Cor)corComboBox.SelectedItem;
+                veiculo.Observacao = observacaoTextBox.Text;
+                veiculo.Placa = placaMaskedTextBox.Text;
 
-            new VeiculoRepositorio().Inserir(veiculo);
+                new VeiculoRepositorio().Inserir(veiculo);
 
-        }
-
-        private void cambioComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        }        
         private void limparButton_Click(object sender, EventArgs e)
         {
             Formulario.Limpar(this);
