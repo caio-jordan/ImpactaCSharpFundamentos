@@ -24,12 +24,13 @@ namespace Oficina.Repositorios.SqlServer.Tests
 
             Assert.IsTrue(cores.Count > 0);
             Assert.IsTrue(cores.Any(x => x.Nome == "Branco"));
-
-            foreach (var cor in cores)
-            {
-                Assert.IsTrue();
-            }
-
+ 
+        }
+        [TestMethod]
+        public void LerPorIdTest()
+        {
+            Assert.IsTrue(repositorio.Ler(1).Nome == "Branco");
+            Assert.IsNull(repositorio.Ler(0));
         }
     }
 }
