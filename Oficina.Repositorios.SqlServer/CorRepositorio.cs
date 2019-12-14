@@ -17,12 +17,39 @@ namespace Oficina.Repositorios.SqlServer
 
         public void Apagar(int id)
         {
-            throw new NotImplementedException();
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+
+                const string nomeProcedure = "CorApagar";
+                using (var comando = new SqlCommand(nomeProcedure, conexao))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@id", id);
+                   // comando.Parameters.AddWithValue("@nome", cor.Nome);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
+
         }
 
         public void Atualizar(Cor cor)
         {
-            throw new NotImplementedException();
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+
+                const string nomeProcedure = "CorAtualizar";
+                using (var comando = new SqlCommand(nomeProcedure, conexao))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@id", cor.Id);
+                    comando.Parameters.AddWithValue("@nome", cor.Nome);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<Cor> Ler()
@@ -55,7 +82,7 @@ namespace Oficina.Repositorios.SqlServer
         {
             var cor = new Cor();
 
-            cor.Id = Convert.ToInt32 (registro["Id"]) ;
+            cor.Id = Convert.ToInt32(registro["Id"]);
             cor.Nome = Convert.ToString(registro[nameof(cor.Nome)]); // Automapper - componente
 
 
@@ -91,9 +118,25 @@ namespace Oficina.Repositorios.SqlServer
             return cor;
         }
 
-        public void Salvar(Cor cor)
+        public int Salvar(Cor cor)
         {
-            throw new NotImplementedException();
+
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                conexao.Open();
+
+                const string nomeProcedure = "CorSalvar";
+                using (var comando = new SqlCommand(nomeProcedure, conexao))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@nome", cor.Nome);
+
+                    return (int)comando.ExecuteScalar();
+                }
+                //conexao.Close();
+
+            }
+
         }
     }
 }
